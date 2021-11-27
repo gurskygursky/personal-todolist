@@ -5,7 +5,7 @@ import {Todolist} from "./Todolist";
 export function App() {
 
     const removeTask = (taskID: number) => {
-       const removedTasks = tasks.filter(task => task.id !== taskID);
+        const removedTasks = tasks.filter(task => task.id !== taskID);
         setTasks(removedTasks);
     }
 
@@ -17,11 +17,29 @@ export function App() {
         {id: 5, taskTitle: "Rest API", isDone: true},
         {id: 6, taskTitle: "Redux", isDone: true},
     ]);
+
+    let [taskFilter, setTaskFilter] = useState<"all" | "active" | "completed">("all");
+
+    let filteredTask = tasks;
+
+    if (taskFilter === "completed") {
+        filteredTask = tasks.filter(task => task.isDone)
+    }
+    if (taskFilter === "active") {
+        filteredTask = tasks.filter(task => !task.isDone)
+    }
+
+    const useTaskFilter = (filterValue: "all" | "active" | "completed") => {
+        setTaskFilter(filterValue)
+    }
+
     return (
         <div className="App">
             <Todolist todolistTitle={"todolist1"}
-                      tasks={tasks}
-                      removeTask={removeTask}/>
+                      tasks={filteredTask}
+                      removeTask={removeTask}
+                      useTaskFilter={useTaskFilter}
+            />
         </div>
     );
 }
