@@ -1,12 +1,18 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 
+export type TodolistType = {
+    id: string,
+    todolistTitle: string,
+    taskFilter: FilterValuesType,
+}
 type TodolistPropsType = {
+    id: string,
     todolistTitle: string,
     tasks: Array<TaskType>,
     removeTask: (taskID: string) => void,
     addTask: (newTaskTitle: string) => void,
     taskFilter: FilterValuesType,
-    useTaskFilter: (filterValue: FilterValuesType) => void,
+    useTaskFilter: (filterValue: FilterValuesType, todolistID: string) => void,
     changeTaskStatus: (taskID: string, isDone: boolean) => void,
 }
 type TaskType = {
@@ -39,9 +45,9 @@ export const Todolist = (props: TodolistPropsType) => {
         }
     }
 
-    const taskFilterAll = () => props.useTaskFilter("all");
-    const taskFilterActive = () => props.useTaskFilter("active");
-    const taskFilterCompleted = () => props.useTaskFilter("completed");
+    const taskFilterAll = () => props.useTaskFilter("all", props.id);
+    const taskFilterActive = () => props.useTaskFilter("active", props.id);
+    const taskFilterCompleted = () => props.useTaskFilter("completed", props.id);
 
     return (
         <div>
