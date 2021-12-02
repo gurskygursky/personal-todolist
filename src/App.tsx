@@ -107,6 +107,15 @@ export function App() {
         }
     }
 
+    const changeTaskTitle = (todolistID: string, taskID: string, newTitle: string) => {
+        const todolistTasks = tasks[todolistID];
+        const task = todolistTasks.find(task => task.id === taskID);
+        if (task) {
+            task.taskTitle = newTitle;
+            setTasks({...tasks})
+        }
+    }
+
     return (
         <div className="App">
             <AddItemForm addItem={addTodolist}/>
@@ -133,6 +142,7 @@ export function App() {
                                          removeTodolist={removeTodolist}
                                          taskFilter={tl.taskFilter}
                                          changeTodolistTitle={changeTodolistTitle}
+                                         changeTaskTitle={changeTaskTitle}
                         />
                     }
                 )

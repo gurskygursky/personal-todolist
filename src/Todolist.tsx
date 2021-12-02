@@ -13,7 +13,8 @@ type TodolistPropsType = {
     useTaskFilter: (filterValue: FilterValuesType, todolistID: string) => void,
     changeTaskStatus: (taskID: string, isDone: boolean, todolistID: string) => void,
     removeTodolist: (todolistID: string) => void,
-    changeTodolistTitle: (todolistID: string, newTitle: string) => void
+    changeTodolistTitle: (todolistID: string, newTitle: string) => void,
+    changeTaskTitle: (todolistID: string, taskID: string, newTitle: string) => void,
 }
 
 export const Todolist = (props: TodolistPropsType) => {
@@ -42,10 +43,10 @@ export const Todolist = (props: TodolistPropsType) => {
         props.addTask(newTaskTitle, props.id)
     }
     const removeTodolist = () => {
-        props.removeTodolist(props.id)
+        props.removeTodolist(props.id);
     }
     const changeTodolistTitle = (newTitle: string) => {
-        props.changeTodolistTitle(props.id, newTitle)
+        props.changeTodolistTitle(props.id, newTitle);
         console.log(newTitle)
     }
 
@@ -72,6 +73,9 @@ export const Todolist = (props: TodolistPropsType) => {
             <ul>
                 {
                     props.tasks.map(task => {
+                        const changeTaskTitle = (newTitle: string) => {
+                            props.changeTaskTitle(props.id, task.id , newTitle);
+                        }
                         const removeTask = () => {
                             props.removeTask(task.id, props.id)
                         }
@@ -84,7 +88,9 @@ export const Todolist = (props: TodolistPropsType) => {
                                    checked={task.isDone}
                                    onChange={taskStatusHandler}
                             />
-                            <span>{task.taskTitle}</span>
+                            <EditableSpan value={task.taskTitle} onChange={changeTaskTitle}/>
+
+                            {/*<span>{task.taskTitle}</span>*/}
                             <button onClick={removeTask}>x</button>
                         </li>
                     })
