@@ -1,6 +1,7 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import React, {ChangeEvent, KeyboardEvent, useCallback, useState} from "react";
 import {FilterValuesType, TaskType} from "./App";
 import {AddItemForm} from "./AddItemForm";
+import {EditableSpan} from "./EditableSpan";
 
 type TodolistPropsType = {
     id: string,
@@ -12,6 +13,7 @@ type TodolistPropsType = {
     useTaskFilter: (filterValue: FilterValuesType, todolistID: string) => void,
     changeTaskStatus: (taskID: string, isDone: boolean, todolistID: string) => void,
     removeTodolist: (todolistID: string) => void,
+    changeTodolistTitle: (todolistID: string, newTitle: string) => void
 }
 
 export const Todolist = (props: TodolistPropsType) => {
@@ -42,6 +44,10 @@ export const Todolist = (props: TodolistPropsType) => {
     const removeTodolist = () => {
         props.removeTodolist(props.id)
     }
+    const changeTodolistTitle = (newTitle: string) => {
+        props.changeTodolistTitle(props.id, newTitle)
+        console.log(newTitle)
+    }
 
     const taskFilterAll = () => props.useTaskFilter("all", props.id);
     const taskFilterActive = () => props.useTaskFilter("active", props.id);
@@ -50,7 +56,8 @@ export const Todolist = (props: TodolistPropsType) => {
     return (
         <div>
             <h3>
-                {props.todolistTitle}
+                {/*{props.todolistTitle}*/}
+                <EditableSpan value={props.todolistTitle} onChange={changeTodolistTitle}/>
                 <button onClick={removeTodolist}>x</button>
             </h3>
             <AddItemForm addItem={addTask}/>

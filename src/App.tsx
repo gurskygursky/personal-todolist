@@ -98,6 +98,14 @@ export function App() {
         setTodolists([newTodolist, ...todolists]);
         setTasks({...tasks, [newTodolistID]: []})
     }
+    const changeTodolistTitle = (todolistID: string, newTitle: string,) => {
+        const todolist = todolists.find(tl => tl.id === todolistID);
+        if (todolist) {
+            // если нашёлся - изменим ему заголовок
+            todolist.todolistTitle = newTitle;
+            setTodolists([...todolists])
+        }
+    }
 
     return (
         <div className="App">
@@ -124,6 +132,7 @@ export function App() {
                                          changeTaskStatus={changeTaskStatus}
                                          removeTodolist={removeTodolist}
                                          taskFilter={tl.taskFilter}
+                                         changeTodolistTitle={changeTodolistTitle}
                         />
                     }
                 )
