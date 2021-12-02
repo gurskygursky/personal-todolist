@@ -19,26 +19,6 @@ type TodolistPropsType = {
 
 export const Todolist = (props: TodolistPropsType) => {
 
-    // let [newTaskTitle, setNewTaskTitle] = useState("");
-    // let [error, setError] = useState<string | null>(null);
-
-    // const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    //     setNewTaskTitle(event.currentTarget.value)
-    // }
-    // const addTask = () => {
-    //     if (newTaskTitle.trim() !== "") {
-    //         props.addTask(newTaskTitle, props.id);
-    //         setNewTaskTitle("");
-    //     } else {
-    //         setError("Title is required!")
-    //     }
-    // }
-    // const onKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-    //     setError(null);
-    //     if (event.key === "Enter") {
-    //         addTask()
-    //     }
-    // }
     const addTask = (newTaskTitle: string) => {
         props.addTask(newTaskTitle, props.id)
     }
@@ -57,24 +37,15 @@ export const Todolist = (props: TodolistPropsType) => {
     return (
         <div>
             <h3>
-                {/*{props.todolistTitle}*/}
                 <EditableSpan value={props.todolistTitle} onChange={changeTodolistTitle}/>
                 <button onClick={removeTodolist}>x</button>
             </h3>
             <AddItemForm addItem={addTask}/>
-            {/*<div>*/}
-            {/*    <input className={error ? "error" : ""}*/}
-            {/*           value={newTaskTitle}*/}
-            {/*           onChange={onChangeHandler}*/}
-            {/*           onKeyPress={onKeyPress}/>*/}
-            {/*    <button onClick={addTask}>+</button>*/}
-            {/*    {error && <div className={"error-message"}>{error}</div>}*/}
-            {/*</div>*/}
             <ul>
                 {
                     props.tasks.map(task => {
                         const changeTaskTitle = (newTitle: string) => {
-                            props.changeTaskTitle(props.id, task.id , newTitle);
+                            props.changeTaskTitle(props.id, task.id, newTitle);
                         }
                         const removeTask = () => {
                             props.removeTask(task.id, props.id)
@@ -89,8 +60,6 @@ export const Todolist = (props: TodolistPropsType) => {
                                    onChange={taskStatusHandler}
                             />
                             <EditableSpan value={task.taskTitle} onChange={changeTaskTitle}/>
-
-                            {/*<span>{task.taskTitle}</span>*/}
                             <button onClick={removeTask}>x</button>
                         </li>
                     })
