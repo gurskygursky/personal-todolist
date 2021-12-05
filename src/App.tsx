@@ -10,7 +10,7 @@ import {
     RemoveTodolistAC,
     todolistsReducer
 } from "./state/todolists-reducer";
-import {AddTaskAC, ChangeTaskStatusAC, ChangeTaskTitleAC, removeTaskAC, tasksReducer} from "./state/tasks-reducer";
+import {AddTaskAC, ChangeTaskStatusAC, ChangeTaskTitleAC, RemoveTaskAC, tasksReducer} from "./state/tasks-reducer";
 
 export type TodolistType = {
     id: string,
@@ -105,7 +105,7 @@ export function App() {
         // }
     }
     const removeTask = (todolistID: string, taskID: string) => {
-        const action = removeTaskAC(todolistID, taskID);
+        const action = RemoveTaskAC(todolistID, taskID);
         dispatchToTasks(action);
         // const removedTasks = tasks[todolistID]
         // tasks[todolistID] = removedTasks.filter(task => task.id !== taskID);

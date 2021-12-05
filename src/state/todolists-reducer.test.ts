@@ -55,7 +55,7 @@ test('correct filter of todolist should be changed', () => {
 
     let newFilter: FilterValuesType = "completed";
 
-    const endState = todolistsReducer(startState, ChangeTodolistFilterAC(newFilter, todolistID2));
+    const endState = todolistsReducer(startState, ChangeTodolistFilterAC(todolistID2, newFilter));
 
     expect(endState[0].taskFilter).toBe("all");
     //

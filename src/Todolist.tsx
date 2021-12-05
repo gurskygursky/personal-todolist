@@ -20,14 +20,13 @@ type TodolistPropsType = {
 export const Todolist = (props: TodolistPropsType) => {
 
     const addTask = (newTaskTitle: string) => {
-        props.addTask(newTaskTitle, props.id)
+        props.addTask(props.id, newTaskTitle)
     }
     const removeTodolist = () => {
         props.removeTodolist(props.id);
     }
     const changeTodolistTitle = (newTitle: string) => {
         props.changeTodolistTitle(props.id, newTitle);
-        console.log(newTitle)
     }
 
     const taskFilterAll = () => props.useTaskFilter( props.id,"all");
@@ -48,7 +47,7 @@ export const Todolist = (props: TodolistPropsType) => {
                             props.changeTaskTitle(props.id, task.id, newTitle);
                         }
                         const removeTask = () => {
-                            props.removeTask(task.id, props.id)
+                            props.removeTask(props.id, task.id);
                         }
                         const taskStatusHandler = (event: ChangeEvent<HTMLInputElement>) => {
                             const isDoneValue = event.currentTarget.checked;
