@@ -7,11 +7,11 @@ type TodolistPropsType = {
     id: string,
     todolistTitle: string,
     tasks: Array<TaskType>,
-    removeTask: (taskID: string, todolistID: string) => void,
-    addTask: (newTaskTitle: string, todolistID: string) => void,
+    removeTask: (todolistID: string, taskID: string) => void,
+    addTask: (todolistID: string, newTaskTitle: string) => void,
     taskFilter: FilterValuesType,
-    useTaskFilter: (filterValue: FilterValuesType, todolistID: string) => void,
-    changeTaskStatus: (taskID: string, isDone: boolean, todolistID: string) => void,
+    useTaskFilter: (todolistID: string, filterValue: FilterValuesType) => void,
+    changeTaskStatus: (todolistID: string, taskID: string, isDone: boolean) => void,
     removeTodolist: (todolistID: string) => void,
     changeTodolistTitle: (todolistID: string, newTitle: string) => void,
     changeTaskTitle: (todolistID: string, taskID: string, newTitle: string) => void,
@@ -30,9 +30,9 @@ export const Todolist = (props: TodolistPropsType) => {
         console.log(newTitle)
     }
 
-    const taskFilterAll = () => props.useTaskFilter("all", props.id);
-    const taskFilterActive = () => props.useTaskFilter("active", props.id);
-    const taskFilterCompleted = () => props.useTaskFilter("completed", props.id);
+    const taskFilterAll = () => props.useTaskFilter( props.id,"all");
+    const taskFilterActive = () => props.useTaskFilter( props.id,"active");
+    const taskFilterCompleted = () => props.useTaskFilter( props.id,"completed");
 
     return (
         <div>
@@ -52,7 +52,7 @@ export const Todolist = (props: TodolistPropsType) => {
                         }
                         const taskStatusHandler = (event: ChangeEvent<HTMLInputElement>) => {
                             const isDoneValue = event.currentTarget.checked;
-                            props.changeTaskStatus(task.id, isDoneValue, props.id)
+                            props.changeTaskStatus(props.id, task.id, isDoneValue)
                         }
                         return <li key={task.id} className={task.isDone ? "is-done" : ""}>
                             <input type="checkbox"
