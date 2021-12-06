@@ -13,8 +13,8 @@ type TaskPropsType = {
 
 export const Task = React.memo((props: TaskPropsType) => {
 
-    const changeTaskTitle = useCallback(() => {
-        props.changeTaskTitle(props.todolistID, props.task.id, props.task.taskTitle);
+    const changeTaskTitle = useCallback((newTitle: string) => {
+        props.changeTaskTitle(props.todolistID, props.task.id, newTitle);
     }, [props.todolistID, props.task.id]);
     const removeTask = useCallback(() => {
         props.removeTask(props.todolistID, props.task.id);
