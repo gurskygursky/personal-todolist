@@ -31,6 +31,4 @@ export const EditableSpan = (props: EditableSpanType) => {
                      onBlur={deactivateEditMode}/>
             : <span onDoubleClick={activateEditMode}>{props.value}</span>
     )
-}
-
-
+};

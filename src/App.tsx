@@ -128,7 +128,7 @@ export function App() {
         // }
         // setTasks({...tasks})
     }
-    const useTaskFilter = (todolistID: string, filterValue: FilterValuesType) => {
+    const changeTaskFilter = (todolistID: string, filterValue: FilterValuesType) => {
         const action = ChangeTodolistFilterAC(todolistID, filterValue);
         dispatchToTodolist(action);
         // let todolist = todolists.find(tl => tl.id === todolistID)
@@ -158,7 +158,7 @@ export function App() {
                                          id={tl.id}
                                          tasks={filteredTask}
                                          removeTask={removeTask}
-                                         useTaskFilter={useTaskFilter}
+                                         changeTaskFilter={changeTaskFilter}
                                          addTask={addTask}
                                          changeTaskStatus={changeTaskStatus}
                                          removeTodolist={removeTodolist}

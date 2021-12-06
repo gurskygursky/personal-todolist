@@ -99,7 +99,7 @@ export function AppWithRedux() {
         const action = ChangeTaskStatusAC(todolistID, taskID, isDone);
         dispatchToTasks(action);
     }
-    const useTaskFilter = (todolistID: string, filterValue: FilterValuesType) => {
+    const changeTaskFilter = (todolistID: string, filterValue: FilterValuesType) => {
         const action = ChangeTodolistFilterAC(todolistID, filterValue);
         dispatchToTodolist(action);
     }
@@ -124,7 +124,7 @@ export function AppWithRedux() {
                                          id={tl.id}
                                          tasks={filteredTask}
                                          removeTask={removeTask}
-                                         useTaskFilter={useTaskFilter}
+                                         changeTaskFilter={changeTaskFilter}
                                          addTask={addTask}
                                          changeTaskStatus={changeTaskStatus}
                                          removeTodolist={removeTodolist}
