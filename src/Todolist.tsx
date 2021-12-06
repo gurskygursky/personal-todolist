@@ -30,12 +30,13 @@ export const Todolist = (props: TodolistPropsType) => {
         props.changeTodolistTitle(props.id, newTitle);
     }, [props.id]);
 
-    const taskFilterAll = useCallback(() => props.changeTaskFilter(props.id, "all"),
-        [props.changeTaskFilter, props.id]);
-    const taskFilterActive = useCallback(() => props.changeTaskFilter(props.id, "active"),
-        [props.changeTaskFilter, props.id]);
-    const taskFilterCompleted = useCallback(() => props.changeTaskFilter(props.id, "completed"),
-        [props.changeTaskFilter, props.id]);
+    const universalFilter = (filterValue: FilterValuesType) => props.changeTaskFilter(props.id, filterValue);
+    // const taskFilterAll = useCallback(() => props.changeTaskFilter(props.id, "all"),
+    //     [props.changeTaskFilter, props.id]);
+    // const taskFilterActive = useCallback(() => props.changeTaskFilter(props.id, "active"),
+    //     [props.changeTaskFilter, props.id]);
+    // const taskFilterCompleted = useCallback(() => props.changeTaskFilter(props.id, "completed"),
+    //     [props.changeTaskFilter, props.id]);
 
     let filteredTask = props.tasks;
     if (props.taskFilter === "completed") {
@@ -86,16 +87,14 @@ export const Todolist = (props: TodolistPropsType) => {
                 {/*}*/}
             </ul>
             <div>
-                <button className={props.taskFilter === "all"
-                    ? "active-filter"
-                    : ""}
-                        onClick={taskFilterAll}>All
+                <button className={props.taskFilter === "all" ? "active-filter" : ""}
+                        onClick={() => universalFilter("all")}>All
                 </button>
                 <button className={props.taskFilter === "active" ? "active-filter" : ""}
-                        onClick={taskFilterActive}>Active
+                        onClick={() => universalFilter("active")}>Active
                 </button>
                 <button className={props.taskFilter === "completed" ? "active-filter" : ""}
-                        onClick={taskFilterCompleted}>Completed
+                        onClick={() => universalFilter("completed")}>Completed
                 </button>
             </div>
         </div>
