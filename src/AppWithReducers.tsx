@@ -2,21 +2,21 @@ import React, {useReducer} from 'react';
 import {v1} from 'uuid';
 import './App.css';
 import {Todolist} from "./Todolist";
-import {AddItemForm} from "./AddItemForm";
+import {AddItemForm} from "./components/input/AddItemForm";
 import {
     AddTodolistAC,
     ChangeTodolistFilterAC,
     ChangeTodolistTitleAC,
     RemoveTodolistAC,
     todolistsReducer
-} from "./state/todolists-reducer";
+} from "./reducer/todolists-reducer";
 import {
     AddTaskAC,
     ChangeTaskStatusAC,
     ChangeTaskTitleAC,
     RemoveTaskAC,
     tasksReducer
-} from "./state/tasks-reducer";
+} from "./reducer/tasks-reducer";
 
 
 export type TodolistType = {

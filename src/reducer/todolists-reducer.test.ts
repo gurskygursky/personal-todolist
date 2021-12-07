@@ -43,7 +43,7 @@ test('correct todolist should be added', () => {
 
 test('correct todolist should change its name', () => {
 
-    let newTodolistTitle = "New Todolist";
+    let newTodolistTitle = "What to learn";
 
     const endState = todolistsReducer(startState, ChangeTodolistTitleAC(newTodolistTitle, todolistID2));
 
@@ -58,6 +58,5 @@ test('correct filter of todolist should be changed', () => {
     const endState = todolistsReducer(startState, ChangeTodolistFilterAC(todolistID2, newFilter));
 
     expect(endState[0].taskFilter).toBe("all");
-    //
     expect(endState[1].taskFilter).toBe('completed');
 });

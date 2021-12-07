@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useCallback} from "react";
-import {EditableSpan} from "./EditableSpan";
-import {TaskType} from "./AppWithRedux";
+import {EditableSpan} from "../span/EditableSpan";
+import {TaskType} from "../../AppWithRedux";
 
 
 type TaskPropsType = {
@@ -24,16 +24,6 @@ export const Task = React.memo((props: TaskPropsType) => {
         props.changeTaskStatus(props.todolistID, props.task.id, isDoneValue)
     }, [props.todolistID, props.task.id]);
 
-    // const changeTaskTitle = (newTitle: string) => {
-    //     props.changeTaskTitle(props.id, task.id, newTitle);
-    // }
-    // const removeTask = () => {
-    //     props.removeTask(props.id, task.id);
-    // }
-    // const taskStatusHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    //     const isDoneValue = event.currentTarget.checked;
-    //     props.changeTaskStatus(props.id, task.id, isDoneValue)
-    // }
     return <li key={props.task.id}
                className={props.task.isDone ? "is-done" : ""}>
         <input type="checkbox"

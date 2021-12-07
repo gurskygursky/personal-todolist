@@ -54,11 +54,6 @@ export const tasksReducer = (state = initialState, action: ActionsType): TasksTy
                 ...state,
                 [action.todolistID]: state[action.todolistID].filter(task => task.id !== action.taskID)
             }
-        // const stateCopy = {...state};
-        // const tasks = state[action.todolistID];
-        // const filteredTasks = tasks.filter(t => t.id !== action.taskID)
-        // stateCopy[action.todolistID] = filteredTasks;
-        // return stateCopy;
         case ADD_TASK:
             return {
                 ...state,
@@ -70,45 +65,27 @@ export const tasksReducer = (state = initialState, action: ActionsType): TasksTy
             }
         case CHANGE_TASK_STATUS: {
             const todolistTasks = state[action.todolistID]
-            const newArrayTaks = todolistTasks
+            state[action.todolistID] = todolistTasks
                 .map(t => t.id === action.taskID
                     ? {...t, isDone: action.isDone}
                     : t)
-            state[action.todolistID] = newArrayTaks
             return ({...state})
         }
-        // let copyState = {...state}
-        // task = copyState[action.todolistID].find(td => td.id === action.taskID)
-        // if (task) {
-        //     task.isDone = action.isDone
-        //     return copyState
-        // }
-        // return state
         case CHANGE_TASK_TITLE: {
             const todolistTasks = state[action.todolistID]
-            const newArrayTasks = todolistTasks
+            state[action.todolistID] = todolistTasks
                 .map(task => task.id === action.taskID
                     ? {...task, taskTitle: action.title}
                     : task)
-            state[action.todolistID] = newArrayTasks
             return ({...state})
         }
-        // let copyState = {...state}
-        // task = copyState[action.todolistID].find(td => td.id === action.taskID)
-        // if (task) {
-        //     task.title = action.title
-        //     return copyState
-        // }
-        // return state
         case ADD_TODOLIST:
             return {...state, [action.todolistID]: []}
         case REMOVE_TODOLIST:
-            // let copyState = {...state}
             delete copyState[action.todolistID]
             return copyState
         default:
             return state
-        // throw new Error("I don't understand this type")
     }
 }
 

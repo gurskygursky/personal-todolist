@@ -1,10 +1,10 @@
 import {FilterValuesType, TodolistType} from "../App";
 import {v1} from "uuid";
 
-export const REMOVE_TODOLIST = 'REMOVE-TODOLIST'
-export const ADD_TODOLIST = 'ADD-TODOLIST'
-export const CHANGE_TODOLIST_TITLE = 'CHANGE-TODOLIST-TITLE'
-export const CHANGE_TODOLIST_FILTER = 'CHANGE-TODOLIST-FILTER'
+const REMOVE_TODOLIST = 'REMOVE-TODOLIST'
+const ADD_TODOLIST = 'ADD-TODOLIST'
+const CHANGE_TODOLIST_TITLE = 'CHANGE-TODOLIST-TITLE'
+const CHANGE_TODOLIST_FILTER = 'CHANGE-TODOLIST-FILTER'
 
 
 export type RemoveTodolistActionType = {
@@ -54,7 +54,6 @@ export const todolistsReducer = (state = initialState, action: ActionsType): Arr
             return [...state];
         }
         default:
-            // throw new Error("I don't understand this type")
             return state
     }
 }
