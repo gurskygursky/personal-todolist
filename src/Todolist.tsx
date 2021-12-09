@@ -1,5 +1,5 @@
 import React, {useCallback} from "react";
-import {FilterValuesType, TaskType} from "./App";
+import {FilterValuesType, TaskType} from "./AppWithRedux";
 import {AddItemForm} from "./components/input/AddItemForm";
 import {EditableSpan} from "./components/span/EditableSpan";
 import {Task} from "./components/task/Task";
