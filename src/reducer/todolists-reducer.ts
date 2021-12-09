@@ -114,3 +114,12 @@ export const fetchTodolistsTC = () => {
             })
     }
 }
+
+export const AddTodolistTC = (title: string) => {
+    return (dispatch: Dispatch) => {
+        todolistAPI.createTodolist(title)
+            .then((res) => {
+                dispatch(AddTodolistAC(res.data.data.item))
+            })
+    }
+}

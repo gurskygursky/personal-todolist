@@ -1,8 +1,11 @@
-import React, {useCallback} from "react";
-import {FilterValuesType, TaskType} from "./AppWithRedux";
+import React, {useCallback, useEffect} from "react";
+import { TaskType } from "./api/todolist-api";
+import {FilterValuesType} from "./AppWithRedux";
 import {AddItemForm} from "./components/input/AddItemForm";
 import {EditableSpan} from "./components/span/EditableSpan";
 import {Task} from "./components/task/Task";
+import {fetchTasksTC} from "./reducer/tasks-reducer";
+import {useDispatch} from "react-redux";
 
 type TodolistPropsType = {
     id: string,
@@ -19,6 +22,12 @@ type TodolistPropsType = {
 }
 
 export const Todolist = (props: TodolistPropsType) => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchTasksTC)
+    })
+
 
     const addTask = useCallback((newTaskTitle: string) => {
         props.addTask(props.id, newTaskTitle)
@@ -34,10 +43,10 @@ export const Todolist = (props: TodolistPropsType) => {
 
     let filteredTask = props.tasks;
     if (props.taskFilter === "completed") {
-        filteredTask = props.tasks.filter(task => task.isDone)
+        filteredTask = props.tasks.filter(task => task.status)
     }
     if (props.taskFilter === "active") {
-        filteredTask = props.tasks.filter(task => !task.isDone)
+        filteredTask = props.tasks.filter(task => !task.status)
     }
     return (
         <div>

@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useCallback} from "react";
+import {TaskStatuses, TaskType} from "../../api/todolist-api";
 import {EditableSpan} from "../span/EditableSpan";
-import {TaskType} from "../../AppWithRedux";
 
 
 type TaskPropsType = {
@@ -25,12 +25,12 @@ export const Task = React.memo((props: TaskPropsType) => {
     }, [props.todolistID, props.task.id]);
 
     return <li key={props.task.id}
-               className={props.task.isDone ? "is-done" : ""}>
+               className={props.task.status ? "is-done" : ""}>
         <input type="checkbox"
-               checked={props.task.isDone}
+               checked={props.task.status === TaskStatuses.Completed}
                onChange={taskStatusHandler}
         />
-        <EditableSpan value={props.task.taskTitle}
+        <EditableSpan value={props.task.title}
                       onChange={changeTaskTitle}/>
         <button onClick={removeTask}>x</button>
     </li>
