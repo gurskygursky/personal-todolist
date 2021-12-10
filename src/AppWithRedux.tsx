@@ -45,7 +45,7 @@ export const AppWithRedux = React.memo(() => {
     // }, []);
     const addTodolist = useCallback((title: string) => {
         dispatch(AddTodolistTC)
-    },[dispatch]);
+    }, [dispatch]);
     const removeTodolist = useCallback((todolistID: string) => {
         dispatch(RemoveTodolistAC(todolistID));
     }, []);
