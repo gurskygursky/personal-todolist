@@ -53,7 +53,7 @@ const initialState: Array<TodolistDomainType> = []
 export const todolistsReducer = (state = initialState, action: ActionsType): Array<TodolistDomainType> => {
     switch (action.type) {
         case REMOVE_TODOLIST:
-            return state.filter(td => td.id !== action.todolistID);
+            return state.filter(td => td.id !== action.id);
         case ADD_TODOLIST:
             return [{...action.todolist, filter: "all"}, ...state]
         case CHANGE_TODOLIST_TITLE: {
@@ -77,9 +77,9 @@ export const todolistsReducer = (state = initialState, action: ActionsType): Arr
     }
 }
 
-export const RemoveTodolistAC = (todolistID: string) => ({
+export const RemoveTodolistAC = (id: string) => ({
     type: REMOVE_TODOLIST,
-    todolistID,
+    id,
 } as const);
 export const AddTodolistAC = (todolist: TodolistResponseType) => ({
     type: ADD_TODOLIST,
@@ -120,6 +120,14 @@ export const AddTodolistTC = (title: string) => {
         todolistAPI.createTodolist(title)
             .then((res) => {
                 dispatch(AddTodolistAC(res.data.data.item))
+            })
+    }
+}
+export const RemoveTodolistTC = (todolistID: string) => {
+    return (dispatch: Dispatch) => {
+        todolistAPI.deleteTodolist(todolistID)
+            .then((res) => {
+                dispatch(RemoveTodolistAC(todolistID))
             })
     }
 }

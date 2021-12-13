@@ -6,6 +6,7 @@ import {EditableSpan} from "./components/span/EditableSpan";
 import {Task} from "./components/task/Task";
 import {fetchTasksTC} from "./reducer/tasks-reducer";
 import {useDispatch} from "react-redux";
+import {RemoveTodolistTC} from "./reducer/todolists-reducer";
 
 type TodolistPropsType = {
     id: string,
@@ -32,9 +33,12 @@ export const Todolist = (props: TodolistPropsType) => {
     const addTask = useCallback((newTaskTitle: string) => {
         props.addTask(props.id, newTaskTitle)
     }, [props.addTask, props.id]);
-    const removeTodolist = () => {
-        props.removeTodolist(props.id);
-    };
+    const removeTodolist = useCallback((todolistID: string) => {
+        dispatch(RemoveTodolistTC(todolistID))
+    }, [])
+    // const removeTodolist = () => {
+    //     props.removeTodolist(props.id);
+    // };
     const changeTodolistTitle = useCallback((newTitle: string) => {
         props.changeTodolistTitle(props.id, newTitle);
     }, [props.id]);
@@ -52,7 +56,7 @@ export const Todolist = (props: TodolistPropsType) => {
         <div>
             <h3>
                 <EditableSpan value={props.todolistTitle} onChange={changeTodolistTitle}/>
-                <button onClick={removeTodolist}>x</button>
+                <button onClick={() => removeTodolist}>x</button>
             </h3>
             <AddItemForm addItem={addTask}/>
             <ul>
