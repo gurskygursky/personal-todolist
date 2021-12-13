@@ -1,8 +1,5 @@
-import {FilterValuesType} from "../AppWithRedux";
-import {v1} from "uuid";
-import {Dispatch} from "redux";
-import {todolistAPI, TodolistResponseType} from "../api/todolist-api";
-import {TodolistType} from "../AppWithRedux";
+import {FilterValuesType} from "../../app/App";
+import {TodolistResponseType} from "../../api/todolist-api";
 
 const REMOVE_TODOLIST = 'REMOVE-TODOLIST'
 const ADD_TODOLIST = 'ADD-TODOLIST'
@@ -46,7 +43,6 @@ export type ActionsType = RemoveTodolistActionType
 export type TodolistDomainType = TodolistResponseType & {
     filter: FilterValuesType,
 }
-
 
 const initialState: Array<TodolistDomainType> = []
 
@@ -103,31 +99,3 @@ export const SetTodolistsAC = (todolists: Array<TodolistResponseType>) => ({
     type: 'SET-TODOLISTS',
     todolists,
 } as const);
-
-
-// thunks
-export const fetchTodolistsTC = () => {
-    return (dispatch: Dispatch) => {
-        todolistAPI.getTodolists()
-            .then((res) => {
-                dispatch(SetTodolistsAC(res.data))
-            })
-    }
-}
-
-export const AddTodolistTC = (title: string) => {
-    return (dispatch: Dispatch) => {
-        todolistAPI.createTodolist(title)
-            .then((res) => {
-                dispatch(AddTodolistAC(res.data.data.item))
-            })
-    }
-}
-export const RemoveTodolistTC = (todolistID: string) => {
-    return (dispatch: Dispatch) => {
-        todolistAPI.deleteTodolist(todolistID)
-            .then((res) => {
-                dispatch(RemoveTodolistAC(todolistID))
-            })
-    }
-}

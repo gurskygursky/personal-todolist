@@ -1,8 +1,8 @@
-import {TasksType} from "../AppWithRedux";
+import {TasksType} from "../../app/App";
 import {RemoveTodolistActionType} from "./todolists-reducer";
 import {v1} from "uuid";
 import {Dispatch} from "redux";
-import {TaskType, todolistAPI} from "../api/todolist-api";
+import {TaskType, todolistAPI} from "../../api/todolist-api";
 
 const REMOVE_TASK = 'REMOVE-TASK'
 const ADD_TASK = 'ADD-TASK'
@@ -153,12 +153,12 @@ export const SetTasksAC = (todolistId: string, tasks: Array<TaskType>) =>
 
 //thunk
 
-export const fetchTasksTC = (todolistId: string) => {
+export const fetchTasksTC = (todolistID: string) => {
     return (dispatch: Dispatch) => {
-        todolistAPI.getTasks(todolistId)
+        todolistAPI.getTasks(todolistID)
             .then((res) => {
                 const tasks = res.data.items
-                const action = SetTasksAC(todolistId, tasks)
+                const action = SetTasksAC(todolistID, tasks)
                 dispatch(action)
             })
     }

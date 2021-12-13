@@ -7,8 +7,8 @@ export {};
 //     RemoveTaskAC,
 //     RemoveTodolistAC,
 //     tasksReducer
-// } from './tasks-reducer';
-// import {TasksType} from "../AppWithRedux";
+// } from './tasks-store';
+// import {TasksType} from "../App";
 // import {v1} from "uuid";
 //
 // let todolistID1: string;

@@ -11,14 +11,14 @@ export {};
 //     ChangeTodolistTitleAC,
 //     RemoveTodolistAC,
 //     todolistsReducer
-// } from "./reducer/todolists-reducer";
+// } from "./store/todolists-store";
 // import {
 //     AddTaskAC,
 //     ChangeTaskStatusAC,
 //     ChangeTaskTitleAC,
 //     RemoveTaskAC,
 //     tasksReducer
-// } from "./reducer/tasks-reducer";
+// } from "./store/tasks-store";
 //
 // export type TodolistType = {
 //     id: string,

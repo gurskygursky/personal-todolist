@@ -10,14 +10,14 @@ export {};
 //     ChangeTodolistTitleAC,
 //     RemoveTodolistAC,
 //     todolistsReducer
-// } from "./reducer/todolists-reducer";
+// } from "./store/todolists-store";
 // import {
 //     AddTaskAC,
 //     ChangeTaskStatusAC,
 //     ChangeTaskTitleAC,
 //     RemoveTaskAC,
 //     tasksReducer
-// } from "./reducer/tasks-reducer";
+// } from "./store/tasks-store";
 //
 //
 // export type TodolistType = {
@@ -36,7 +36,7 @@ export {};
 // export type FilterValuesType = 'all' | 'active' | 'completed';
 //
 //
-// export function AppWithRedux() {
+// export function App() {
 //     let todolistID1 = v1();
 //     let todolistID2 = v1();
 //

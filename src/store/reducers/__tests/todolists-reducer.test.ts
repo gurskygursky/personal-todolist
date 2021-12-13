@@ -5,9 +5,9 @@ export {};
 //     ChangeTodolistTitleAC,
 //     RemoveTodolistAC,
 //     todolistsReducer
-// } from './todolists-reducer';
+// } from './todolists-store';
 // import {v1} from 'uuid';
-// import {FilterValuesType, TodolistType} from '../AppWithRedux';
+// import {FilterValuesType, TodolistType} from '../App';
 //
 // let todolistID1: string;
 // let todolistID2: string;
